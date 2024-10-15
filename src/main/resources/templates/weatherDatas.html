@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Datas</title>
+</head>
+<body>
+    <tbody>
+
+        <div th:if="${weatherData != null}">
+            <div th:if="${weatherData.hourly != null}">
+                <table th:if="${weatherData.hourly.temperatures != null}">
+                    <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Temperatura (°C)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="temp, iterStat : ${weatherData.hourly.temperatures}">
+                        <td th:text="${weatherData.hourly.times[iterStat.index]}"></td>
+                        <td th:text="${temp}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </tbody>
+</body>
+</html>
+<style>
+    *{
+        border: none;
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        outline: none;
+    }
+
+    body{
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 18px;
+        text-align: left;
+    }
+
+    thead {
+        background-color: #2c3e50;
+        color: white;
+    }
+
+    th, td {
+        padding: 12px;
+        border: 1px solid #ddd;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
